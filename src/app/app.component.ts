@@ -1,6 +1,7 @@
+
 import { Component } from '@angular/core';
-import { GetExchangeRateDto, GetExchangeRateDtoWebApiResponse } from './api/models';
-import { ExchangeRatesService } from './api/services';
+import { AuthRequest, AuthResponse } from './api/models';
+import { UsersService } from './api/services';
 
 @Component({
   selector: 'app-root',
@@ -10,32 +11,25 @@ import { ExchangeRatesService } from './api/services';
 export class AppComponent {
   title = 'BCP-ExchangeRate-FrontEnd';
 
-
-  exchangeRate: GetExchangeRateDto;
-
   constructor(
-    private _exchangeRatesService: ExchangeRatesService
-  ) {
-
-    this.exchangeRate = {};
-  }
+    private _usersService: UsersService
+  ) { }
 
   ngOnInit(): void {
-    this.getAll('USD', 'PEN', 100);
-  }
 
-  getAll(originCurrency: string, destinationCurrency: string, amount: number) {
-    this._exchangeRatesService.apiVExchangeRatesGet$Json({
+    const body: AuthRequest = {
+      username: 'cvallejo',
+      password: '123qwe'
+    }
+
+    this._usersService.apiVUsersAuthPost$Json({
       v: "1.0",
-      originCurrency: originCurrency,
-      destinationCurrency: destinationCurrency,
-      amount: amount
-    }).subscribe((res: GetExchangeRateDtoWebApiResponse) => {
-
-      //this.exchangeRate = res.response?.data[0];
+      body: body
+    }).subscribe((res: AuthResponse) => {
+      if (res) {
+        localStorage.setItem('token', JSON.stringify(res.token));
+      }
     });
+
   }
-
-
-
 }

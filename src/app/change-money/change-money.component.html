@@ -1,6 +1,6 @@
-<h2>REGISTRO DE TIPO DE CAMBIO</h2>
+<h2>CONSULTAR TIPO DE CAMBIO</h2>
 
-<form name="exchangeRateForm" [formGroup]="exchangeRateForm">
+<form name="changeMoneyForm" [formGroup]="changeMoneyForm">
 
   Moneda origen:
   <select formControlName="originCurrency">
@@ -16,13 +16,16 @@
     <option value="PEN">PEN</option>
   </select>
 
-  Tipo de cambio:
-  <input type="text" formControlName="exchangeRate">
+  Monto:
+  <input type="text" formControlName="amount">
 
-  <button (click)="save()">Guardar</button>
+  <button (click)="changeMoney()">Consultar</button>
   <button (click)="cancel()">Cancelar</button>
 </form>
 
 <div>Moneda origen: {{exchangeRate.originCurrency}}</div>
 <div>Moneda destino: {{exchangeRate.destinationCurrency}}</div>
+<div>Monto: {{exchangeRate.amount}}</div>
+
 <div>Tipo de cambio: {{exchangeRate.exchangeRate}}</div>
+<div>Monto con tipo de cambio: {{exchangeRate.amountChanged}}</div>
