@@ -19,6 +19,10 @@ const appRoutes: Routes = [
     path: 'change-money',
     component: ChangeMoneyComponent
   },
+  {
+    path: '**',
+    redirectTo: 'exchange-rate'
+  }
 ];
 
 @NgModule({

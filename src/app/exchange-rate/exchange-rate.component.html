@@ -5,6 +5,7 @@
   Moneda origen:
   <select formControlName="originCurrency">
     <option value="" selected>Seleccione moneda origen</option>
+    <!-- <option *ngFor="let elem of moneys" value="{{elem}}">{{elem}}</option> -->
     <option value="USD">USD</option>
     <option value="PEN">PEN</option>
   </select>
@@ -18,6 +19,10 @@
 
   Tipo de cambio:
   <input type="text" formControlName="exchangeRate">
+
+  <div class="textError" *ngIf="exchangeRateForm.controls.exchangeRate.errors">
+    Ingresa un tipo de cambio
+  </div>
 
   <button (click)="save()">Guardar</button>
   <button (click)="cancel()">Cancelar</button>

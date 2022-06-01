@@ -14,6 +14,11 @@ export class ExchangeRateComponent implements OnInit {
 
   exchangeRate: PostExchangeRateDto = {};
 
+  moneys: Array<string> = [
+    "EUR",
+    "GBP"
+  ];
+
   constructor(
     private _exchangeRatesService: ExchangeRatesService,
     private _formBuilder: FormBuilder
